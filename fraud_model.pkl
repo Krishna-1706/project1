@@ -1,0 +1,15 @@
+# render.yaml  — place this in your /backend folder
+# Render reads this to auto-configure your free web service
+
+services:
+  - type: web
+    name: fraud-detection-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SUPABASE_URL
+        sync: false          # you will paste this in Render dashboard
+      - key: SUPABASE_KEY
+        sync: false          # you will paste this in Render dashboard
